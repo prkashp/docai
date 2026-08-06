@@ -12,7 +12,7 @@ local_tz = pendulum.timezone("US/Eastern")
 
 args = {
     'owner': 'Data Engineers',
-    'email': ['MatrixAlerts@personifyhealth.com'],
+    'email': ['prakashpro86@gmail.com'],
     'email_on_failure': True,
     'start_date': datetime(2024, 12, 23, tzinfo=local_tz),
     'retries': 2,
@@ -49,7 +49,7 @@ dummy_end = DummyOperator(
 unzip_raw_claims = BashOperator(
     task_id='unzip_raw_claims',
     bash_command="""
-    SCRIPTDIR="$HOME/data-etl-pipelines/scripts"
+    SCRIPTDIR="$HOME/837"
     python $SCRIPTDIR/docai/eldorado/preprocessor/unzipper.py {{batch_environment}}
     """,
     dag=dag)
@@ -57,7 +57,7 @@ unzip_raw_claims = BashOperator(
 call_preprocessor_model = BashOperator(
     task_id='call_preprocessor_model',
     bash_command="""
-    SCRIPTDIR="$HOME/data-etl-pipelines/scripts"
+    SCRIPTDIR="$HOME/837"
     python $SCRIPTDIR/docai/eldorado/preprocessor/preprocessor_model.py {{batch_environment}}
     """,
     dag=dag)
@@ -65,7 +65,7 @@ call_preprocessor_model = BashOperator(
 classify_files = BashOperator(
     task_id='classify_files',
     bash_command="""
-    SCRIPTDIR="$HOME/data-etl-pipelines/scripts"
+    SCRIPTDIR="$HOME/837"
     python $SCRIPTDIR/docai/eldorado/preprocessor/classifier.py {{batch_environment}}
     """,
     dag=dag)
@@ -73,7 +73,7 @@ classify_files = BashOperator(
 call_dental_predict = BashOperator(
     task_id='call_dental_predict',
     bash_command="""
-    SCRIPTDIR="$HOME/data-etl-pipelines/scripts"
+    SCRIPTDIR="$HOME/837"
     python $SCRIPTDIR/docai/eldorado/core/dental_claims_model.py {{batch_environment}}
     """,
     dag=dag)
@@ -82,7 +82,7 @@ call_dental_predict = BashOperator(
 call_professional_predict = BashOperator(
     task_id='call_professional_predict',
     bash_command="""
-    SCRIPTDIR="$HOME/data-etl-pipelines/scripts"
+    SCRIPTDIR="$HOME/837"
     echo "Skip"
     """,
     dag=dag)
@@ -90,7 +90,7 @@ call_professional_predict = BashOperator(
 call_institutional_predict = BashOperator(
     task_id='call_institutional_predict',
     bash_command="""
-    SCRIPTDIR="$HOME/data-etl-pipelines/scripts"
+    SCRIPTDIR="$HOME/837"
     echo "Skip"
     """,
     dag=dag)
@@ -98,7 +98,7 @@ call_institutional_predict = BashOperator(
 postprocessor = BashOperator(
     task_id='postprocessor',
     bash_command="""
-    SCRIPTDIR="$HOME/data-etl-pipelines/scripts"
+    SCRIPTDIR="$HOME/837"
     python $SCRIPTDIR/docai/eldorado/postprocessor/postprocessor.py -env={{batch_environment}}
     """,
     dag=dag)
@@ -106,7 +106,7 @@ postprocessor = BashOperator(
 json_to_x12_dental_conversion = BashOperator(
     task_id='json_to_x12_dental_conversion',
     bash_command="""
-    SCRIPTDIR="$HOME/data-etl-pipelines/scripts"
+    SCRIPTDIR="$HOME/837"
     python $SCRIPTDIR/docai/eldorado/postprocessor/dental/s3_to_edi.py {{batch_environment}}
     """,
     dag=dag)

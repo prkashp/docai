@@ -1,6 +1,6 @@
-# Document AI Archive - Eldorado Claims Processing
+# Document AI Archive -  Claims Processing
 
-This archive contains the previous implementation of the Document AI claims processing pipeline for Eldorado Health. It serves as a reference for the architecture and patterns used in processing insurance claims (professional, dental, and institutional).
+This archive contains the previous implementation of the Document AI claims processing pipeline for  Health. It serves as a reference for the architecture and patterns used in processing insurance claims (professional, dental, and institutional).
 
 ## Overview
 
@@ -17,7 +17,7 @@ The archive consists of a complete Airflow DAG-based pipeline that:
 
 ```
 archive/
-├── docai_eldorado_claims_process.py  # Main Airflow DAG
+├── docai__claims_process.py  # Main Airflow DAG
 ├── core/                              # Core claim processing models
 │   ├── professional_claims_model.py   # Professional claims processor
 │   ├── dental_claims_model.py         # Dental claims processor
@@ -40,7 +40,7 @@ archive/
 
 ### Key Components
 
-#### 1. **Airflow DAG** (`docai_eldorado_claims_process.py`)
+#### 1. **Airflow DAG** (`docai__claims_process.py`)
 - Orchestrates the entire pipeline
 - Scheduled to run daily at 10:40 PM EST
 - Handles task dependencies and error notifications
@@ -109,7 +109,7 @@ archive/
 ⚠️ **This is an archive folder** - DO NOT build upon or reuse this code directly without understanding the context and limitations.
 
 ### Why It's Archived
-- Built for specific Eldorado Health requirements
+- Built for specific  Health requirements
 - Heavy Snowflake coupling
 - Can serve as reference for architecture patterns and claim processing logic
 
@@ -125,7 +125,7 @@ archive/
 
 If you need to understand the processing workflow:
 
-1. **Pipeline Flow**: Start with `docai_eldorado_claims_process.py` to understand task dependencies
+1. **Pipeline Flow**: Start with `docai__claims_process.py` to understand task dependencies
 2. **Document Flow**: Follow `preprocessor/preprocessor_model.py` to see preprocessing steps
 3. **Data Extraction**: Review relevant model in `core/` for your claim type
 4. **Result Handling**: Check `postprocessor/` for result formatting and storage
