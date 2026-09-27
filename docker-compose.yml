@@ -1,0 +1,16 @@
+services:
+  app:
+    build: .
+    environment:
+      MILVUS_DB_PATH: /app/milvus_data
+      COLLECTION_NAME: ocr_documents
+    volumes:
+      - ./images:/app/images
+      - ./src:/app/src
+      - milvus_data:/app/milvus_data
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+
+volumes:
+  milvus_data:
